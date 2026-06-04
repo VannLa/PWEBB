@@ -10,3 +10,4 @@ Route::get('/', function () {
 
 
 Route::get('/penduduk', [KelurahanController::class, 'dataPenduduk']);
+Route::get('/surat', [KelurahanController::class, 'daftarSurat']);
