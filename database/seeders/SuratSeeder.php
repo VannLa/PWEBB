@@ -16,6 +16,9 @@ class SuratSeeder extends Seeder
     {
         //Mengambil sampel penduduk pertama dari database
         $warga1 = Penduduk::first();
+        $warga2 = Penduduk::find(2);
+        $warga3 = Penduduk::find(3);
+
 
         if($warga1){
             Surat::create([
@@ -32,5 +35,40 @@ class SuratSeeder extends Seeder
                 'penduduk_id'=>$warga1->id  
             ]);
         }
+
+        if($warga2){
+            Surat::create([
+                'nomor_surat'=>'003/MK/2026',
+                'jenis_surat'=>'Surat Keterangan Usaha (SKU)',
+                'tanggal_ajuan'=>'2026-06-15',
+                'penduduk_id'=>$warga2->id
+            ]);
+
+            Surat::create([
+                'nomor_surat'=>'004/MK/2026',
+                'jenis_surat'=>'Surat Pengantar SKCK',
+                'tanggal_ajuan'=>'2026-06-18',
+                'penduduk_id'=>$warga2->id  
+            ]);
+        }
+
+        if($warga3){
+            Surat::create([
+                'nomor_surat'=>'005/MK/2026',
+                'jenis_surat'=>'Surat Keterangan Usaha (SKU)',
+                'tanggal_ajuan'=>'2026-06-15',
+                'penduduk_id'=>$warga3->id
+            ]);
+
+            Surat::create([
+                'nomor_surat'=>'006/MK/2026',
+                'jenis_surat'=>'Surat Pengantar SKCK',
+                'tanggal_ajuan'=>'2026-06-18',
+                'penduduk_id'=>$warga3->id  
+            ]);
+        }
+
+
+
     }
 }
