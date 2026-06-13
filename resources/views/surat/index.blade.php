@@ -31,17 +31,35 @@
                     <th>Nama Pemohon</th>
                     <th>NIK Pemohon</th>
                     <th>Tanggal Ajuan</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($semuaSurat as $index => $s)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td><span class="badge badge-secondary">{{ $s->nomor_surat }}</span></td>
+                    <td><strong>{{ $s->nomor_surat }}</strong></td>
                     <td>{{ $s->jenis_surat }}</td>
                     <td><strong>{{ $s->penduduk->nama }}</strong></td>
                     <td>{{ $s->penduduk->nik }}</td>
                     <td>{{ \Carbon\Carbon::parse($s->tanggal_ajuan)->format('d-m-Y') }}</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <!-- Tombol Menuju Halaman Edit -->
+                            <a href="{{ route('surat.edit', $s->id) }}" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+
+                            <!-- Tombol Hapus Menggunakan Form POST dengan Method Spoofing DELETE -->
+                            <form action="{{ route('surat.destroy', $s->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data surat ini?')" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i> Hapus
+                                </button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
                 @empty
                 <tr>
